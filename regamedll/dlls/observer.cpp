@@ -165,7 +165,30 @@ void CBasePlayer::Observer_FindNextPlayer(bool bReverse, const char *name)
 			if (!name)
 				break;
 
-			CBasePlayer *pPlayer = UTIL_PlayerByIndex(m_hObserverTarget->entindex());
+			CBasePlayer const *pPlayer = UTIL_PlayerByIndex(m_hObserverTarget->entindex());
+			{
+				if (m_hObserverTarget->m_iTeam != m_iTeam)
+				{
+					UTIL_ServerPrint("\n\t!!!(m_hObserverTarget->m_iTeam != m_iTeam)\n");
+
+					CBasePlayer const* pCurrent = UTIL_PlayerByIndex(iCurrent);
+
+					UTIL_ServerPrint("\t --- %s()\n\
+						bForceSameTeam=%i \n\
+						\t Finder(this)='%s' (HP:%.0f, Team:%i),\n\
+						\t m_hObserverTarget='%s' (HP:%.0f, Team:%i),\n\
+						\t iCurrent='%s'(HP:%.0f, Team:%i)\n===\n\
+						  iDir=%i\
+						", __func__,
+							bForceSameTeam,
+							STRING(pev->netname), pev->health, m_iTeam,
+							STRING(pPlayer->pev->netname), pPlayer->pev->health, pPlayer->m_iTeam,
+							STRING(pCurrent->pev->netname), pCurrent->pev->health, pCurrent->m_iTeam,
+						iDir
+					);
+				}
+			}
+
 			if (!Q_strcmp(name, STRING(pPlayer->pev->netname)))
 				break;
 		}
