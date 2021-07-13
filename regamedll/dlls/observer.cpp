@@ -476,7 +476,7 @@ void CBasePlayer::Observer_SetMode(int iMode)
 	{
 		CBasePlayer *pTarget = m_hObserverTarget;
 
-		if (pTarget == this || !pTarget || pTarget->has_disconnected || pTarget->GetObserverMode() != OBS_NONE || (pTarget->pev->effects & EF_NODRAW) || (forcecamera != CAMERA_MODE_SPEC_ANYONE && pTarget->m_iTeam != m_iTeam))
+		if (pTarget == this || !pTarget || pTarget->has_disconnected || pTarget->GetObserverMode() != OBS_NONE || (pTarget->pev->effects & EF_NODRAW) || (forcecamera != CAMERA_MODE_SPEC_ANYONE/*  && pTarget->m_iTeam != m_iTeam */))
 			m_hObserverTarget = nullptr;
 	}
 
