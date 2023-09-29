@@ -947,6 +947,22 @@ inline bool CBasePlayer::HasTimePassedSinceDeath(float duration) const
 	return gpGlobals->time > (m_fDeadTime + duration);
 }
 
+inline float GetDamageModify(const bool isDamageSelf)
+{
+#ifdef REGAMEDLL_ADD
+    if (isDamageSelf) {
+        return 1.0f;
+    }
+
+    // bullets hurt teammates less
+    return clamp(((bitsDamageType & DMG_BULLET) ?
+        ff_damage_reduction_bullets.value :
+        ff_damage_reduction_other.value), 0.0f, 1.0f);
+#endif
+
+    return 0.35f;
+}
+
 #ifdef REGAMEDLL_API
 inline CCSPlayer *CBasePlayer::CSPlayer() const {
 	return reinterpret_cast<CCSPlayer *>(this->m_pEntity);
