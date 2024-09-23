@@ -66,7 +66,7 @@ jobs:
   testdemos:
     name: 'Test demos'
     runs-on: ubuntu-20.04
-    container: s1lentq/testdemos:latest
+    container: rehldsorg/testdemos:latest
     needs: [windows]
 
     env:
