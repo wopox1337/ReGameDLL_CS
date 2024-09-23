@@ -14,7 +14,7 @@ on:
 jobs:
   windows:
     name: 'Windows'
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     env:
       solution: 'msvc/ReGameDLL.sln'
@@ -32,7 +32,7 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
         with:
-          vs-version: '17.11'
+          vs-version: '16'
 
       - name: Build and Run unittests
         run: |
