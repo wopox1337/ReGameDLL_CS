@@ -69,11 +69,6 @@ jobs:
     container: rehldsorg/testdemos:latest
     needs: [windows]
 
-    env:
-      WINEDEBUG: -all
-      WINEDLLOVERRIDES: mshtml=
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
     defaults:
       run:
         shell: bash
