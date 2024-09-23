@@ -14,7 +14,7 @@ on:
 jobs:
   windows:
     name: 'Windows'
-    runs-on: windows-
+    runs-on: windows-latest
 
     env:
       solution: 'msvc/ReGameDLL.sln'
@@ -65,7 +65,7 @@ jobs:
 
   testdemos:
     name: 'Test demos'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container: rehldsorg/testdemos:latest
     needs: [windows]
 
@@ -133,7 +133,7 @@ jobs:
 
   linux:
     name: 'Linux'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
